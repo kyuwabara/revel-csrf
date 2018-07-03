@@ -5,6 +5,7 @@ package csrf
 
 import (
 	"crypto/subtle"
+	"net/http"
 	"net/url"
 	"regexp"
 
@@ -26,7 +27,7 @@ var (
 
 // CSRFFilter implements the CSRF filter.
 var CSRFFilter = func(c *revel.Controller, fc []revel.Filter) {
-	r := c.Request.Request
+	r := c.Request.In.GetRaw().(*http.Request)
 
 	// [OWASP]; General Recommendation: Synchronizer Token Pattern:
 	// CSRF tokens must be associated with the user's current session.
