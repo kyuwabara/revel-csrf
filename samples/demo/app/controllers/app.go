@@ -16,7 +16,7 @@ func (c App) Index() revel.Result {
 }
 
 func (c App) Hello(name string) revel.Result {
-	route := c.Request.Request.URL.Path
+	route := c.Request.URL.Path
 	exempted := (route == "/HelloExempted")
 	return c.Render(name, exempted)
 }
